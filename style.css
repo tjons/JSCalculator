@@ -1,0 +1,34 @@
+body {
+	width: 800px;
+	margin: 0 auto;
+	background-color: lightblue;
+	font-family: sans-serif;
+}
+
+h1 {
+	text-align: center;
+}
+
+.calculator {
+	width: 600px;
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 auto;
+}
+
+.result {
+	border: 3px solid #000;
+	width: 800px;
+	margin: 3rem 0;
+}
+
+button {
+	width: 33%;
+	height: 3rem;
+	background-color: skyblue;
+	font-size: 2rem;
+}
+
+button:focus {
+	outline: none;
+}
