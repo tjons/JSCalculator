@@ -30,6 +30,47 @@
 
 		this.resultEl = document.getElementById('result');
 		this.enteredEl = document.getElementById('entered');
+
+		this.clearBuffer = function () {
+			if (!this.firstNumber) {
+				this.firstNumber = parseInt(this.currentNumberBuffer);
+				this.currentNumberBuffer = 0;
+			} else {
+				this.secondNumber = parseInt(this.currentNumberBuffer);
+			}
+		};
+
+		this.handleNumber = function (number) {
+			this.currentNumberBuffer = this.currentNumberBuffer ? this.currentNumberBuffer += number : number;
+			this.enteredEl.innerText = this.enteredEl.innerText + number;
+		};
+
+		this.handleOperator = function (operator) {
+			this.clearBuffer();
+			this.operator = operator;
+			this.enteredEl.innerText = this.enteredEl.innerText + operator;
+		};
+
+		this.handleResult = function () {
+			this.clearBuffer();
+			this.result = this.operators[this.operator](this.firstNumber, this.secondNumber);
+			this.resultEl.innerText = this.result;
+
+			return this.result;
+		};
+
+		this.reset = function () {
+			this.firstNumber = null;
+			this.secondNumber = null;
+			this.currentNumberBuffer = null;
+			this.result = null;
+			this.resetResultEl();
+			this.resetEnteredEl();
+		};
+
+		this.resetResultEl = function () {
+			this.resultEl.innerText = null;
+		};
 	};
 
 	Calculator.prototype.operators = {
@@ -40,50 +81,9 @@
 		'^': function (a, b) {return Math.pow(a, b)}
 	};
 
-	Calculator.prototype.clearBuffer = function () {
-		if (!this.firstNumber) {
-			this.firstNumber = parseInt(this.currentNumberBuffer);
-			this.currentNumberBuffer = 0;
-		} else {
-			this.secondNumber = parseInt(this.currentNumberBuffer);
-		}
-	};
-
-	Calculator.prototype.handleNumber = function (number) {
-		this.currentNumberBuffer = this.currentNumberBuffer ? this.currentNumberBuffer += number : number;
-		this.enteredEl.innerText = this.enteredEl.innerText + number;
-	};
-
-	Calculator.prototype.handleOperator = function (operator) {
-		this.clearBuffer();
-		this.operator = operator;
-		this.enteredEl.innerText = this.enteredEl.innerText + operator;
-	};
-
-	Calculator.prototype.handleResult = function () {
-		this.clearBuffer();
-		this.result = this.operators[this.operator](this.firstNumber, this.secondNumber);
-		this.resultEl.innerText = this.result;
-
-		return this.result;
-	};
-
-	Calculator.prototype.reset = function () {
-		this.firstNumber = null;
-		this.secondNumber = null;
-		this.currentNumberBuffer = null;
-		this.result = null;
-		this.resetResultEl();
-		this.resetEnteredEl();
-	};
-
-	Calculator.prototype.resetResultEl = function () {
-		this.resultEl.innerText = null;
-	};
-
 	Calculator.prototype.resetEnteredEl = function () {
-		this.enteredEl.innerText = null;
-	}
+			this.enteredEl.innerText = null;
+		};
 
 	var calc = new Calculator();
 	window.calc = calc;
