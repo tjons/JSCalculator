@@ -7,6 +7,13 @@
 		}
 	}
 
+	// var Calculator = {
+	// 	clearBuffer: function () {
+
+	// 	},
+	// 	resultEl: document.getElementById();
+	// };
+
 // Private function
 	function handleClick(event) {
 		var elType = this.dataset.type;
