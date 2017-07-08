@@ -7,6 +7,7 @@
 		}
 	}
 
+// Private function
 	function handleClick(event) {
 		var elType = this.dataset.type;
 
@@ -25,7 +26,13 @@
 		}
 	}
 
+	/** 
+		Equivelent to var Calculator = {};
+	*/
+
+// Object
 	var Calculator = function() {
+		//Constructor
 		addEventListeners();
 
 		this.resultEl = document.getElementById('result');
@@ -59,6 +66,8 @@
 			return this.result;
 		};
 
+		// Equivelent to a property in {}
+
 		this.reset = function () {
 			this.firstNumber = null;
 			this.secondNumber = null;
@@ -73,6 +82,7 @@
 		};
 	};
 
+// Prototype = Parent
 	Calculator.prototype.operators = {
 		'+': function (a, b) {return a + b},
 		'-': function (a, b) {return a - b},
@@ -81,10 +91,13 @@
 		'^': function (a, b) {return Math.pow(a, b)}
 	};
 
+	// Functions can be declared on the prototype as well
+
 	Calculator.prototype.resetEnteredEl = function () {
 			this.enteredEl.innerText = null;
 		};
 
+		//Instantiate your object and it will run your constructor
+
 	var calc = new Calculator();
-	window.calc = calc;
 })();
